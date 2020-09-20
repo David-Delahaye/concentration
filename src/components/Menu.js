@@ -1,19 +1,21 @@
 import React,{Component} from 'react';
 import Game from './Game';
-import '../index.css'
+import Ui from './Ui';
+import '../styles/index.css';
 
 class Menu extends Component{
     constructor(props){
         super(props);
         this.state = {
-            difficulty:8,
+            difficulty:20,
             active:false,
             characters:['a','b','c','d','e','f','g','h','i','j'],
             cards:[],
         }
     }
 
-    buildBoard = async (length) => {
+    buildBoard = async () => {
+        const length = this.state.difficulty
         this.setState({active:false})
         let array = Array(length);
         for (let i = 0; i < length; i++) {
@@ -23,10 +25,7 @@ class Menu extends Component{
             array[i].correct = false;
         }
         array = this.shuffleArray(array);
-        console.log(array);
-        await this.setState({cards:array})
-        console.log(this.state.cards);
-        this.setState({active:true})
+        await this.setState({cards:array, active:true})
     }
 
     shuffleArray(array) {
@@ -39,12 +38,18 @@ class Menu extends Component{
         return array;
     }
 
+    endCondition() {
+        console.log('won');
+        this.setState({active:false})
+    }
 
     render(){
+        console.log('render');
+        console.log(this.state.cards);
         return(
-            <div>
-            {this.state.active ? <Game cards={this.state.cards}/> : ''}
-            <button onClick={()=>{this.buildBoard(this.state.difficulty)}}>Build board</button>
+            <div className='gamespace'>
+            {!this.state.active ? <Ui buildBoard={() =>{this.buildBoard()}}/> : ''}
+            {this.state.active ? <Game cards={this.state.cards} endCondition={() =>{this.endCondition()}}/> : '' }
             </div>
         )
     }

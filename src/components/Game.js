@@ -1,69 +1,84 @@
 import React,{Component, useState} from 'react';
 import Card from './Card';
-import '../index.css'
+import '../styles/index.css'
 
-function Game (props){
-    console.log(props);
-    const [picked,setPicker] = useState([]);
-    const [cards,setCards] = useState(props.cards);
-    console.log(cards);
-    let ticker = '';
+class Game extends Component {
+    constructor(props){
+        super(props);
+        console.log(this.props.cards);
+        this.state = {
+            picked : [],
+            cards : [this.props.cards],
+        }
+    }
+    async componentDidMount(){
+        this.setState({cards:this.props.cards})
+    }
+    
+    async componentDidUpdate(prevState){
+        if (this.state.cards !== prevState.cards){
+            await this.setState({cards:this.props.cards})
+        }
+    }
 
-    const pickEvent = (card) =>{
-        clearTimeout(ticker)
+
+    ticker = '';
+    pickEvent = (card) =>{
+        console.log(card);
+        clearTimeout(this.ticker)
         card.setState({active:true})
 
-        const array = picked;
+        const array = this.state.picked;
         array.push(card)
-        setPicker(array)
+        this.setState({picked:array})
 
-        //ON TWO CARDS PICKED
-        if (picked.length === 2) {
+        //ON TWO CARDS picked
+        if (this.state.picked.length === 2) {
             document.body.classList.add('pointerOff')
-            ticker = setTimeout(()=> {
+            this.ticker = setTimeout(()=> {
             //CORRECT CHECK
-            if(picked[0].state.symbol === picked[1].state.symbol){
-                picked[0].setState({success:true})
-                picked[1].setState({success:true})
+            if(this.state.picked[0].state.symbol === this.state.picked[1].state.symbol){
+                this.state.picked[0].setState({success:true})
+                this.state.picked[1].setState({success:true})
 
                 //ADD TO WIN LIST
-                const array = cards;
-                console.log(array);
-                array[picked[0].props.id].correct = true;
-                array[picked[1].props.id].correct = true;
-                setCards(array)
+                const array = this.state.cards;
+                array[this.state.picked[0].props.id].correct = true;
+                array[this.state.picked[1].props.id].correct = true;
+                this.setState({cards:array})
 
                 //WIN CONDITION
                 let isWin = true;
-                for (let i = 0; i < cards.length; i++) {
-                    if (cards[i].correct === false) isWin = false; 
+                for (let i = 0; i < this.state.cards.length; i++) {
+                    if (this.state.cards[i].correct === false) isWin = false; 
                 }
-                if (isWin === true) console.log('win');
+                if (isWin === true) this.props.endCondition()
 
             }
             //RESET THE TWO
-            picked[0].setState({active:false})
-            picked[1].setState({active:false})
-            setPicker([])
+            this.state.picked[0].setState({active:false})
+            this.state.picked[1].setState({active:false})
+            this.setState({picked:[]})
             document.body.classList.remove('pointerOff')
             },400)
         }
     }
 
-    const cardFormat = cards.map ((card,i) => {
-        return(
-            <Card key={i} id={i} pickEvent={pickEvent} symbol={card.symbol}/>
-        )
-    })
 
+    render(){
+        let cardFormat = this.state.cards.map ((card,i) => {
+            console.log('render');
+            return(
+                <Card id={i} pickEvent={this.pickEvent} symbol={card.symbol}/>
+            )
+        })
 
     return(
-        <div>
-            <div className='grid'>
-                {cardFormat}
-            </div>
+        <div className='grid'>
+            {cardFormat}
         </div>
     )
+    }
 
 }
 

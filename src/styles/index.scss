@@ -1,0 +1,72 @@
+html,body{
+  height: 100%;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  width: 100%;
+  height: 100vh;
+}
+
+.gamespace{
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  .grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    min-height: 100%;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    .card{
+      font-size: 3rem;
+      height: 100%;
+      width: 100%;
+      margin: auto;
+      transition: 1s;
+      border-radius: 5%;
+      background-color: red;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.success{
+  color: rgb(89, 233, 89);
+  background-color: rgb(5, 46, 5) !important;
+}
+
+.pointerOff{
+  pointer-events: none;
+}
+
+
+.active{
+  animation: flip 300ms forwards;
+}
+
+@keyframes flip {
+  0% {transform: rotateY(0deg)}
+  50% {transform: rotateY(90deg)}
+  100% {transform: rotateY(0deg)}
+}
+
+.menu{
+  position: absolute;
+  background-color: rgb(105, 102, 102);
+  top: 30%;
+  left: 30%;
+  right: 30%;
+  bottom: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
