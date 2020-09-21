@@ -7,7 +7,7 @@ class Menu extends Component{
     constructor(props){
         super(props);
         this.state = {
-            difficulty:20,
+            difficulty:12,
             active:false,
             characters:['a','b','c','d','e','f','g','h','i','j'],
             cards:[],

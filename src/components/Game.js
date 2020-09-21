@@ -27,7 +27,9 @@ class Game extends Component {
     ticker = '';
     pickEvent = (card) =>{
         clearTimeout(this.ticker)
-        card.setState({active:true})
+        console.log(card);
+        this.state.cards[card.props.id].active = true;
+        // card.setState({active:true})
 
         const array = this.state.picked;
         array.push(card)
@@ -39,9 +41,6 @@ class Game extends Component {
             this.ticker = setTimeout(()=> {
             //CORRECT CHECK
             if(this.state.picked[0].state.symbol === this.state.picked[1].state.symbol){
-                this.state.picked[0].setState({success:true})
-                this.state.picked[1].setState({success:true})
-
                 //ADD TO WIN LIST
                 const array = this.state.cards;
                 array[this.state.picked[0].props.id].correct = true;
@@ -57,11 +56,11 @@ class Game extends Component {
 
             }
             //RESET THE TWO
-            this.state.picked[0].setState({active:false})
-            this.state.picked[1].setState({active:false})
+            this.state.cards[this.state.picked[0].props.id].active = false;
+            this.state.cards[this.state.picked[1].props.id].active = false;
             this.setState({picked:[]})
             document.body.classList.remove('pointerOff')
-            },400)
+            },300)
         }
     }
 
