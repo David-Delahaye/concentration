@@ -23,6 +23,7 @@ class Menu extends Component{
             array[i] = {};
             array[i].symbol = character;
             array[i].correct = false;
+            array[i].active = false;
         }
         array = this.shuffleArray(array);
         await this.setState({cards:array, active:true})
@@ -44,12 +45,10 @@ class Menu extends Component{
     }
 
     render(){
-        console.log('render');
-        console.log(this.state.cards);
         return(
             <div className='gamespace'>
             {!this.state.active ? <Ui buildBoard={() =>{this.buildBoard()}}/> : ''}
-            {this.state.active ? <Game cards={this.state.cards} endCondition={() =>{this.endCondition()}}/> : '' }
+            {true === true ? <Game cards={this.state.cards} endCondition={() =>{this.endCondition()}}/> : '' }
             </div>
         )
     }

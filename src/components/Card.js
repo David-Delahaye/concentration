@@ -5,22 +5,23 @@ class Card extends Component{
     constructor(props){
         super(props);
         this.state = {
-            active : false,
-            success: false,
-            symbol : props.symbol,
+            active  : props.active,
+            correct : props.correct,
+            symbol  : props.symbol,
         }
     }
 
     async componentDidUpdate(prevState){
-        if (this.state.symbol !== prevState.symbol){
+        console.log(this);
+        if (this.props.symbol !== prevState.symbol){
             await this.setState({symbol:this.props.symbol})
         }
     }
 
 
     render(){
-        if (this.state.success) return (<div className='card success' id={this.props.id}>{this.state.symbol}</div>)
-        if (this.state.active) return (<div className='card active' id={this.props.id}>{this.state.symbol}</div>)
+        if (this.props.correct) return (<div className='card success' id={this.props.id}>{this.props.symbol}</div>)
+        if (this.state.active) return (<div className='card active' id={this.props.id}>{this.props.symbol}</div>)
         else return (<div className='card' id={this.props.id} onClick={() => {this.props.pickEvent(this)}}>?</div>)
     }
 }

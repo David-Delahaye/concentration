@@ -5,7 +5,6 @@ import '../styles/index.css'
 class Game extends Component {
     constructor(props){
         super(props);
-        console.log(this.props.cards);
         this.state = {
             picked : [],
             cards : [this.props.cards],
@@ -14,17 +13,19 @@ class Game extends Component {
     async componentDidMount(){
         this.setState({cards:this.props.cards})
     }
-    
+
     async componentDidUpdate(prevState){
-        if (this.state.cards !== prevState.cards){
+        console.log('update');
+        if (this.props.cards !== prevState.cards){
+            console.log('update2');
             await this.setState({cards:this.props.cards})
+            console.log(this.state.cards);
         }
     }
 
 
     ticker = '';
     pickEvent = (card) =>{
-        console.log(card);
         clearTimeout(this.ticker)
         card.setState({active:true})
 
@@ -67,9 +68,8 @@ class Game extends Component {
 
     render(){
         let cardFormat = this.state.cards.map ((card,i) => {
-            console.log('render');
             return(
-                <Card id={i} pickEvent={this.pickEvent} symbol={card.symbol}/>
+                <Card id={i} correct={card.correct} active={card.active} pickEvent={this.pickEvent} symbol={card.symbol}/>
             )
         })
 
