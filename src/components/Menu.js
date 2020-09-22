@@ -7,9 +7,10 @@ class Menu extends Component{
     constructor(props){
         super(props);
         this.state = {
-            difficulty:12,
+            difficulty:14,
             active:false,
-            characters:['a','b','c','d','e','f','g','h','i','j'],
+            characters:[50, 50, 100, 100, 150, 150, 200, 200, 250, 250, 300, 300, 350, 350],
+            plant:[0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2],
             cards:[],
         }
     }
@@ -19,9 +20,9 @@ class Menu extends Component{
         this.setState({active:false})
         let array = Array(length);
         for (let i = 0; i < length; i++) {
-            const character = this.state.characters[Math.floor(i/2)];
             array[i] = {};
-            array[i].symbol = character;
+            array[i].symbol = this.state.characters[i];
+            array[i].plant = this.state.plant[i];
             array[i].correct = false;
             array[i].active = false;
         }

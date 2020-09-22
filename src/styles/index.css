@@ -40,7 +40,6 @@ html, body {
 
 .gamespace .grid .card {
   font-size: 0.75rem;
-  height: 100%;
   padding: 2em;
   margin: 0.75em;
   -webkit-transition: 1s;
@@ -59,8 +58,12 @@ html, body {
           justify-content: center;
 }
 
+.gamespace .grid .card p {
+  height: 61px;
+  width: 41px;
+}
+
 .success {
-  color: #59e959;
   background-color: #052e05 !important;
 }
 
@@ -69,8 +72,8 @@ html, body {
 }
 
 .active {
-  -webkit-animation: flip 300ms forwards;
-          animation: flip 300ms forwards;
+  -webkit-animation: flip 200ms forwards;
+          animation: flip 200ms forwards;
 }
 
 @-webkit-keyframes flip {

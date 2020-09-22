@@ -26,8 +26,8 @@ class Game extends Component {
 
     ticker = '';
     pickEvent = (card) =>{
-        clearTimeout(this.ticker)
         console.log(card);
+        clearTimeout(this.ticker)
         this.state.cards[card.props.id].active = true;
         // card.setState({active:true})
 
@@ -40,7 +40,7 @@ class Game extends Component {
             document.body.classList.add('pointerOff')
             this.ticker = setTimeout(()=> {
             //CORRECT CHECK
-            if(this.state.picked[0].state.symbol === this.state.picked[1].state.symbol){
+            if(this.state.picked[0].props.symbol === this.state.picked[1].props.symbol){
                 //ADD TO WIN LIST
                 const array = this.state.cards;
                 array[this.state.picked[0].props.id].correct = true;
@@ -68,7 +68,7 @@ class Game extends Component {
     render(){
         let cardFormat = this.state.cards.map ((card,i) => {
             return(
-                <Card id={i} correct={card.correct} active={card.active} pickEvent={this.pickEvent} symbol={card.symbol}/>
+                <Card id={i} correct={card.correct} active={card.active} pickEvent={this.pickEvent} symbol={card.symbol} plant={card.plant}/>
             )
         })
 

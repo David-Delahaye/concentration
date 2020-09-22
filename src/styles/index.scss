@@ -26,7 +26,6 @@ html,body{
     min-height: 50%;
     .card{
       font-size: 0.75rem;
-      height: 100%;
       padding: 2em;
       margin: 0.75em;
       transition: 1s;
@@ -36,12 +35,15 @@ html,body{
       display: flex;
       align-items: center;
       justify-content: center;
+      p{
+        height: 61px;
+        width: 41px;
+      }
     }
   }
 }
 
 .success{
-  color: rgb(89, 233, 89);
   background-color: rgb(5, 46, 5) !important;
 }
 
@@ -51,7 +53,7 @@ html,body{
 
 
 .active{
-  animation: flip 300ms forwards;
+  animation: flip 200ms forwards;
 }
 
 @keyframes flip {

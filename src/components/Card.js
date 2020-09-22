@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../styles/index.css'
+import plantpot from '../images/plantpot.js';
 
 class Card extends Component{
     constructor(props){
@@ -12,9 +13,9 @@ class Card extends Component{
     }
 
     render(){
-        if (this.props.correct) return (<div className='card success' id={this.props.id}>{this.props.symbol}</div>)
-        if (this.props.active) return (<div className='card active' id={this.props.id}>{this.props.symbol}</div>)
-        else return (<div className='card' id={this.props.id} onClick={() => {this.props.pickEvent(this)}}>?</div>)
+    if (this.props.correct) return (<div className='card success' id={this.props.id}>{plantpot(this.props.symbol, this.props.plant)}</div>)
+    if (this.props.active) return (<div className='card active' id={this.props.id}>{plantpot(this.props.symbol, this.props.plant)}</div>)
+        else return (<div className='card' id={this.props.id} onClick={() => {this.props.pickEvent(this)}}><p>?</p></div>)
     }
 }
 
