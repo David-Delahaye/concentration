@@ -3,9 +3,11 @@ import '../styles/index.css'
 
 function Ui (props){
     return(
-    <div className='menu'>
-        <h1>Menu</h1>
-        <button onClick={props.buildBoard}>Play</button>
+    <div className='overlay'>
+        <div className='menu'>
+            <h1>Menu</h1>
+            <button onClick={props.buildBoard}>Play</button>
+        </div>
     </div>
     )
 }

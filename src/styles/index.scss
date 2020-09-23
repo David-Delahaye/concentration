@@ -30,7 +30,7 @@ html,body{
       margin: 0.75em;
       transition: 1s;
       border-radius: 5%;
-      background-color: red;
+      background-color: rgb(121, 192, 214);
       text-align: center;
       display: flex;
       align-items: center;
@@ -62,16 +62,27 @@ html,body{
   100% {transform: rotateY(0deg)}
 }
 
+.overlay{
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  backdrop-filter: blur(10px);
 .menu{
   position: absolute;
-  background-color: rgb(105, 102, 102);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
   top: 30%;
   left: 30%;
   right: 30%;
   bottom: 30%;
+  border-radius: 5%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 }
 
 @media (min-width: 700px){

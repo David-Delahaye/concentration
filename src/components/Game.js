@@ -60,7 +60,7 @@ class Game extends Component {
             this.state.cards[this.state.picked[1].props.id].active = false;
             this.setState({picked:[]})
             document.body.classList.remove('pointerOff')
-            },300)
+            },500)
         }
     }
 
