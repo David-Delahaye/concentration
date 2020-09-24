@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 html, body {
   height: 100%;
 }
@@ -10,6 +11,7 @@ html, body {
 }
 
 .App {
+  font-family: 'Righteous', cursive;
   width: 100%;
   height: 100vh;
   display: -webkit-box;
@@ -18,12 +20,31 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-image: url("../images/Pattern.png");
+  background-position: center;
+  background-size: cover;
+}
+
+h1 {
+  margin-bottom: 4rem;
+  margin-top: 4rem;
+  font-size: 4rem;
 }
 
 .gamespace {
   width: 100%;
   max-width: 50rem;
-  margin: auto;
+  border-radius: 5px;
+  position: relative;
+  padding: 1rem;
+  -webkit-box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.226);
+          box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.226);
+  background-color: #f7f7d7;
 }
 
 .gamespace .grid {
@@ -45,7 +66,9 @@ html, body {
   -webkit-transition: 1s;
   transition: 1s;
   border-radius: 5%;
-  background-color: #79c0d6;
+  background-color: #ffea76;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.39);
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -106,19 +129,39 @@ html, body {
   }
 }
 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 .overlay {
+  -webkit-animation: fadeIn 500ms forwards;
+          animation: fadeIn 500ms forwards;
+  position: absolute;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
+  bottom: 0px;
+  right: 0px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }
 
 .overlay .menu {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(31, 31, 5, 0.9);
   color: white;
   top: 30%;
   left: 30%;

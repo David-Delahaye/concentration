@@ -15,6 +15,11 @@ class Menu extends Component{
         }
     }
 
+    componentDidMount(){
+        this.buildBoard();
+        this.setState({active:false})
+    }
+
     buildBoard = async () => {
         const length = this.state.difficulty
         this.setState({active:false})
