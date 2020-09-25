@@ -5,8 +5,8 @@ function Ui (props){
     return(
     <div className='overlay'>
         <div className='menu'>
-            <h1>Menu</h1>
-            <button onClick={props.buildBoard}>Play</button>
+            <h2>Menu</h2>
+            <button onClick={props.buildBoard}>Start a Game now!</button>
         </div>
     </div>
     )
