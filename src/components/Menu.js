@@ -24,12 +24,24 @@ class Menu extends Component{
         const length = this.state.difficulty
         this.setState({active:false})
         let array = Array(length);
-        for (let i = 0; i < length; i++) {
+        for (let i = 0; i < length; i = i+2) {
+            let j = i+1;
+            let color = Math.floor(Math.random()*350);
+            let plant = Math.round(Math.random()*2);
+            let pot = Math.round(Math.random()*2);
             array[i] = {};
-            array[i].symbol = this.state.characters[i];
-            array[i].plant = this.state.plant[i];
+            array[i].symbol = color;
+            array[i].plant = plant;
+            array[i].pot = pot;
             array[i].correct = false;
             array[i].active = false;
+
+            array[j] = {};
+            array[j].symbol = color;
+            array[j].plant = plant;
+            array[j].pot = pot;
+            array[j].correct = false;
+            array[j].active = false;
         }
         array = this.shuffleArray(array);
         await this.setState({cards:array, active:true})

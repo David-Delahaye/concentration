@@ -68,7 +68,7 @@ class Game extends Component {
     render(){
         let cardFormat = this.state.cards.map ((card,i) => {
             return(
-                <Card id={i} correct={card.correct} active={card.active} pickEvent={this.pickEvent} symbol={card.symbol} plant={card.plant}/>
+                <Card id={i} correct={card.correct} active={card.active} pickEvent={this.pickEvent} symbol={card.symbol} plant={card.plant} pot={card.pot}/>
             )
         })
 
