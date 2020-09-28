@@ -16,12 +16,14 @@ class Menu extends Component{
     }
 
     componentDidMount(){
-        this.buildBoard();
+        this.buildBoard(this.state.difficulty);
         this.setState({active:false})
     }
 
-    buildBoard = async () => {
-        const length = this.state.difficulty
+    buildBoard = async (e) => {
+        console.log(e);
+        const length = e;
+        console.log(length);
         this.setState({active:false})
         let array = Array(length);
         for (let i = 0; i < length; i = i+2) {
@@ -65,7 +67,7 @@ class Menu extends Component{
     render(){
         return(
             <div className='gamespace'>
-            {!this.state.active ? <Ui buildBoard={() =>{this.buildBoard()}}/> : ''}
+            {!this.state.active ? <Ui buildBoard={(e) =>{this.buildBoard(e)}}/> : ''}
             {true === true ? <Game cards={this.state.cards} endCondition={() =>{this.endCondition()}}/> : '' }
             </div>
         )
