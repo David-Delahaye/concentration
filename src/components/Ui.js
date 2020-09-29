@@ -12,7 +12,7 @@ function Ui (props){
         <div className='menu'>
             <h2>Menu</h2>
             <p>Pair up Identical Plants</p>
-            <form onSubmit={(e) => {gameStart(e)}}>
+            <form className='difficulty' onSubmit={(e) => {gameStart(e)}}>
                 <label>Easy
                 <input type='radio' name='difficulty' value='8'/>
                 </label>

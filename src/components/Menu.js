@@ -15,9 +15,9 @@ class Menu extends Component{
     }
 
     tick;
-    timer = () => {
+    timer = (max) => {
         clearInterval(this.tick);
-        this.setState({timer:15})
+        this.setState({timer:max})
         this.tick = setInterval(() => {
             this.setState({timer:this.state.timer-1})
         }, 1000);
@@ -29,7 +29,6 @@ class Menu extends Component{
     }
 
     buildBoard = async (e) => {
-        console.log(e);
         const length = e;
         console.log(length);
         this.setState({active:false})
@@ -55,7 +54,7 @@ class Menu extends Component{
         }
         array = this.shuffleArray(array);
         await this.setState({cards:array, active:true})
-        this.timer()
+        this.timer(40-e)
     }
 
     shuffleArray(array) {
