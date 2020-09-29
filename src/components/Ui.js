@@ -17,10 +17,10 @@ function Ui (props){
                 <input type='radio' name='difficulty' value='8'/>
                 </label>
                 <label>Normal
-                <input type='radio' name='difficulty' value='16'/>
+                <input type='radio' name='difficulty' value='10'/>
                 </label>
                 <label>Hard
-                <input type='radio' name='difficulty' value='24'/>
+                <input type='radio' name='difficulty' value='12'/>
                 </label>
                 <button >Start a Game now!</button>
             </form>

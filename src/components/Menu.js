@@ -7,12 +7,20 @@ class Menu extends Component{
     constructor(props){
         super(props);
         this.state = {
-            difficulty:14,
+            difficulty:8,
             active:false,
-            characters:[50, 50, 100, 100, 150, 150, 200, 200, 250, 250, 300, 300, 350, 350],
-            plant:[0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2],
+            timer:15,
             cards:[],
         }
+    }
+
+    tick;
+    timer = () => {
+        clearInterval(this.tick);
+        this.setState({timer:15})
+        this.tick = setInterval(() => {
+            this.setState({timer:this.state.timer-1})
+        }, 1000);
     }
 
     componentDidMount(){
@@ -28,7 +36,7 @@ class Menu extends Component{
         let array = Array(length);
         for (let i = 0; i < length; i = i+2) {
             let j = i+1;
-            let color = Math.floor(Math.random()*350);
+            let color = Math.floor((i/length)*350);
             let plant = Math.round(Math.random()*2);
             let pot = Math.round(Math.random()*2);
             array[i] = {};
@@ -47,6 +55,7 @@ class Menu extends Component{
         }
         array = this.shuffleArray(array);
         await this.setState({cards:array, active:true})
+        this.timer()
     }
 
     shuffleArray(array) {
@@ -65,11 +74,17 @@ class Menu extends Component{
     }
 
     render(){
+        if (this.state.timer < 1) {
+            this.timer()
+            this.endCondition()
+        }
         return(
             <div className='gamespace'>
             {!this.state.active ? <Ui buildBoard={(e) =>{this.buildBoard(e)}}/> : ''}
-            {true === true ? <Game cards={this.state.cards} endCondition={() =>{this.endCondition()}}/> : '' }
+            {true ? <Game cards={this.state.cards} time={this.state.timer} endCondition={() =>{this.endCondition()}}/> : '' }
+            {this.state.timer}
             </div>
+            
         )
     }
 }

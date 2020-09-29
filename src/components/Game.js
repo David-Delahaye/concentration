@@ -15,11 +15,8 @@ class Game extends Component {
     }
 
     async componentDidUpdate(prevState){
-        console.log('update');
         if (this.props.cards !== prevState.cards){
-            console.log('update2');
             await this.setState({cards:this.props.cards})
-            console.log(this.state.cards);
         }
     }
 
